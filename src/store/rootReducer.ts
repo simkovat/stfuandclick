@@ -5,4 +5,4 @@ export const rootReducer = combineReducers({
   leaderboard: leaderboardSlice.reducer,
 });
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootStateT = ReturnType<typeof rootReducer>;

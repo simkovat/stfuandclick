@@ -1,9 +1,10 @@
 import { TeamDataT } from '../types';
 import { createSlice } from '@reduxjs/toolkit';
 
-export type LeaderBoardStateT = null | TeamDataT[];
+export type LeaderBoardStateT = TeamDataT[];
 
-const initialState: LeaderBoardStateT = null;
+// TODO nulll would be better
+const initialState: LeaderBoardStateT = [];
 
 export const leaderboardSlice = createSlice({
   name: 'leaderboard',

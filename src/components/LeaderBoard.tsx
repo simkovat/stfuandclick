@@ -1,29 +1,31 @@
 import { FC } from 'react';
 import React from 'react';
+import { RootStateT } from '../store/rootReducer';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
-export const LeaderBoard: FC = () => (
-  <Wrapper>
-    <Headers>
-      <span>TEAM</span>
-      <span>CLICKS</span>
-    </Headers>
-    <Row>
-      <Rank>3</Rank>
-      <TeamData>
-        <span>Applifting</span>
-        <span>1 002 345</span>
-      </TeamData>
-    </Row>
-    <Row>
-      <Rank>3</Rank>
-      <TeamData>
-        <span>Applifting</span>
-        <span>1 002 345</span>
-      </TeamData>
-    </Row>
-  </Wrapper>
-);
+export const LeaderBoard: FC = () => {
+  const data = useSelector((state: RootStateT) => state.leaderboard);
+
+  return (
+    <Wrapper>
+      <Headers>
+        <span>TEAM</span>
+        <span>CLICKS</span>
+      </Headers>
+      {data &&
+        data.map((team) => (
+          <Row>
+            <Rank>{team.order}</Rank>
+            <TeamData>
+              <span>{team.team}</span>
+              <span>{team.clicks}</span>
+            </TeamData>
+          </Row>
+        ))}
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.ul`
   width: 100%;

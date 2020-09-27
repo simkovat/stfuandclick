@@ -2,17 +2,21 @@ import { FC } from 'react';
 import { LeaderBoard } from './LeaderBoard';
 import React from 'react';
 import { RibbonHeader } from './RibbonHeader';
+import { RootStateT } from '../store/rootReducer';
 import { TeamForm } from './TeamForm';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
-export const MainBox: FC = () => (
-  <Wrapper>
-    <TeamForm />
-    <RibbonHeader title={'TOP 10 Clickers'} />
-    <LeaderBoard />
-    <Footer>Want to be top? STFU and click!</Footer>
-  </Wrapper>
-);
+export const MainBox: FC = () => {
+  return (
+    <Wrapper>
+      <TeamForm />
+      <RibbonHeader title={'TOP 10 Clickers'} />
+      <LeaderBoard />
+      <Footer>Want to be top? STFU and click!</Footer>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   border: solid 3px #4990e2;
