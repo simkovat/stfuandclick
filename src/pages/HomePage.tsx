@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Layout } from '../components/Layout';
+import { MainBox } from "../components/MainBox";
 import { Quote } from '../components/Quote';
 import React from 'react';
 
@@ -9,5 +10,6 @@ export const HomePage: FC = () => (
       text={"It's really simple, you just need to click as fast as you can."}
       author={'anonymous'}
     />
+    <MainBox />
   </Layout>
 );
