@@ -1,19 +1,59 @@
-import { TeamDataT } from '../types';
-import { createSlice } from '@reduxjs/toolkit';
+import { LeaderBoardDataT, TeamDataT } from '../types';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-export type LeaderBoardStateT = TeamDataT[];
+import { AppThunk } from './store';
+import { getLeaderboard } from '../api/getLeaderBoard';
+
+export type LeaderBoardStateT = {
+  data: TeamDataT[] | null;
+  error: string | null;
+  pending: boolean;
+};
 
 // TODO nulll would be better
-const initialState: LeaderBoardStateT = [];
+const initialState: LeaderBoardStateT = {
+  data: null,
+  error: null,
+  pending: false,
+};
 
 export const leaderboardSlice = createSlice({
   name: 'leaderboard',
   initialState,
-  reducers: {},
+  reducers: {
+    getLeaderBoardPending(state) {
+      state.pending = true;
+    },
+    getLeaderBoardSuccess(
+      state,
+      action: PayloadAction<{ data: LeaderBoardDataT }>
+    ) {
+      state.data = action.payload.data;
+      state.error = null;
+      state.pending = false;
+    },
+    getLeaderBoardFailed(state, action: PayloadAction<string>) {
+      state.data = null;
+      state.error = action.payload;
+      state.pending = false;
+    },
+  },
 });
 
-// export const {
-//     displayRepo,
-//     setCurrentDisplayType,
-//     setCurrentPage
-//   } = issuesDisplaySlice.actions
+export const {
+  getLeaderBoardPending,
+  getLeaderBoardSuccess,
+  getLeaderBoardFailed,
+} = leaderboardSlice.actions;
+
+export const fetchLeaderboard = (): AppThunk => async (dispatch) => {
+  dispatch(getLeaderBoardPending);
+  let leaderboard;
+  try {
+    leaderboard = await getLeaderboard();
+  } catch (err) {
+    dispatch(getLeaderBoardFailed(err.toString()));
+    return;
+  }
+  dispatch(getLeaderBoardSuccess(leaderboard));
+};

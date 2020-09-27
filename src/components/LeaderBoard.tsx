@@ -13,7 +13,7 @@ export const LeaderBoard: FC = () => {
         <span>TEAM</span>
         <span>CLICKS</span>
       </Headers>
-      {data &&
+      {/* {data &&
         data.map((team) => (
           <Row>
             <Rank>{team.order}</Rank>
@@ -22,7 +22,7 @@ export const LeaderBoard: FC = () => {
               <span>{team.clicks}</span>
             </TeamData>
           </Row>
-        ))}
+        ))} */}
     </Wrapper>
   );
 };

@@ -3,3 +3,5 @@ export interface TeamDataT {
   team: string;
   clicks: number;
 }
+
+export type LeaderBoardDataT = TeamDataT[];
