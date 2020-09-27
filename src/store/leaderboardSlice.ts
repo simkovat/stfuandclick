@@ -10,7 +10,6 @@ export type LeaderBoardStateT = {
   pending: boolean;
 };
 
-// TODO nulll would be better
 const initialState: LeaderBoardStateT = {
   data: null,
   error: null,

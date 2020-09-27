@@ -1,19 +1,24 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import React from 'react';
 import { RootStateT } from '../store/rootReducer';
+import { fetchLeaderboard } from '../store/leaderboardSlice';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 
 export const LeaderBoard: FC = () => {
-  const data = useSelector((state: RootStateT) => state.leaderboard);
-
+  const { data } = useSelector((state: RootStateT) => state.leaderboard);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchLeaderboard());
+  }, [dispatch]);
   return (
     <Wrapper>
       <Headers>
         <span>TEAM</span>
         <span>CLICKS</span>
       </Headers>
-      {/* {data &&
+      {!!data &&
         data.map((team) => (
           <Row>
             <Rank>{team.order}</Rank>
@@ -22,7 +27,7 @@ export const LeaderBoard: FC = () => {
               <span>{team.clicks}</span>
             </TeamData>
           </Row>
-        ))} */}
+        ))}
     </Wrapper>
   );
 };

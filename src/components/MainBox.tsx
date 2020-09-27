@@ -2,10 +2,8 @@ import { FC } from 'react';
 import { LeaderBoard } from './LeaderBoard';
 import React from 'react';
 import { RibbonHeader } from './RibbonHeader';
-import { RootStateT } from '../store/rootReducer';
 import { TeamForm } from './TeamForm';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 
 export const MainBox: FC = () => {
   return (
