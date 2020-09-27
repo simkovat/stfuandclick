@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family:  Helvetica, Sans-Serif;
+    font-weight: lighter;
   }
   a
   {
