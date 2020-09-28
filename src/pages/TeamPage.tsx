@@ -5,6 +5,7 @@ import { FC } from 'react';
 import { Layout } from '../components/Layout';
 import { MainBox } from '../components/MainBox';
 import React from 'react';
+import { ScoreBoard } from '../components/Board/ScoreBoard';
 import { SessionStats } from '../components/SessionStats';
 import { postClick } from '../store/sessionSlice';
 import { sessionSelector } from '../store/selectors/sessionSelector';
@@ -15,6 +16,8 @@ export const TeamPage: FC = () => {
   const { team } = useParams<{ team: string }>();
   const dispatch = useDispatch();
   const session = useSelector(sessionSelector);
+
+  //TODO pouzit useEffect aby se jeden api post poslal uz pri renderu?
 
   const handleClick = () => {
     dispatch(postClick(team, session.data.token));
@@ -34,6 +37,7 @@ export const TeamPage: FC = () => {
           yourClicks={session.data.yourClicks}
           teamClicks={session.data.teamClicks}
         />
+        <ScoreBoard />
       </MainBox>
     </Layout>
   );

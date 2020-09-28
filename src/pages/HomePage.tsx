@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Layout } from '../components/Layout';
-import { LeaderBoard } from '../components/LeaderBoard';
+import { LeaderBoard } from '../components/Board/LeaderBoard';
 import { MainBox } from '../components/MainBox';
 import { Quote } from '../components/Quote';
 import React from 'react';
