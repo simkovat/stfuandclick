@@ -5,13 +5,17 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider } from 'styled-components';
+import { defaultTheme } from './styles/defaultTheme';
 import { store } from './store/store';
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <React.StrictMode>
-        <App />
+        <ThemeProvider theme={defaultTheme}>
+          <App />
+        </ThemeProvider>
       </React.StrictMode>
     </BrowserRouter>
   </Provider>,

@@ -55,16 +55,16 @@ const Headers = styled.div`
   width: 90%;
   display: flex;
   justify-content: space-between;
-  color: grey;
+  color: ${({ theme }) => theme.colors.tableHeader};
   font-size: 0.7em;
   font-weight: bold;
 `;
 const Row = styled.li`
-  background-color: #cee5f9;
+  background-color: ${({ theme }) => theme.colors.tableRowDark};
   padding: 0 10px 0 15px;
   display: flex;
   &:nth-child(even) {
-    background-color: #e4f0fe;
+    background-color: ${({ theme }) => theme.colors.tableRowLight};
   }
 `;
 const Rank = styled.div`

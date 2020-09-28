@@ -15,5 +15,5 @@ const Wrapper = styled.div`
   font-weight: lighter;
   background-color: #fff;
   padding: 50px;
-  color: red;
+  color: ${({ theme }) => theme.colors.error};
 `;
