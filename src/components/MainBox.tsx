@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import React from 'react';
+import { mediaSmallTabletMax } from '../styles/constants';
 import styled from 'styled-components';
 
 export const MainBox: FC = ({ children }) => {
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
   border: solid 3px #4990e2;
   border-radius: 10px;
   width: 60%;
-  max-width: 550px;
+  width: 550px;
   max-height: 675px;
   margin: 35px 0;
   padding: 10px 0 20px 0;
@@ -23,6 +24,10 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: #fff;
+
+  ${mediaSmallTabletMax} {
+    width: 100%;
+  }
 `;
 const Footer = styled.span`
   font-style: italic;

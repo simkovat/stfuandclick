@@ -57,6 +57,7 @@ const Invitation = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 const LinkBox = styled.div`

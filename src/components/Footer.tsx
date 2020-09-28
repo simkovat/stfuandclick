@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   font-style: italic;
   font-weight: lighter;
   background-color: #f1f2f3;
-  padding: 20px 0;
+  padding: 20px 10px;
   & span > a {
     color: #4990e2;
   }
