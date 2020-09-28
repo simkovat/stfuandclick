@@ -1,16 +1,28 @@
+import { useDispatch, useSelector } from 'react-redux';
+
 import { FC } from 'react';
 import React from 'react';
+import { postClick } from '../store/sessionSlice';
+import { sessionTokenSelector } from '../store/selectors/sessionTokenSelector';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 
 //TODO make button a pending button
 //TODO display validation errors
 
-export const TeamForm: FC = () => {
-  const { register, handleSubmit, errors } = useForm<{ teamName: string }>();
+interface FormData {
+  teamName: string;
+}
 
-  //TODO fix any type
-  const onSubmit = (data: any) => console.log(data);
+export const TeamForm: FC = () => {
+  const { register, handleSubmit, errors } = useForm<FormData>();
+  const sessionToken = useSelector(sessionTokenSelector);
+  const dispatch = useDispatch();
+
+  const onSubmit = (data: FormData) => {
+    console.log(data);
+    dispatch(postClick(data.teamName, sessionToken));
+  };
   console.log(errors);
 
   return (
@@ -24,7 +36,7 @@ export const TeamForm: FC = () => {
           ref={register({ required: true, maxLength: 50 })}
         />
       </InputWrapper>
-      <Button>CLICK!</Button>
+      <Button type='submit'>CLICK!</Button>
     </Wrapper>
   );
 };

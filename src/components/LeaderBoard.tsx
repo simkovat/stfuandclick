@@ -30,7 +30,7 @@ export const LeaderBoard: FC = () => {
       </Headers>
       <TableWrapper>
         {data?.slice(0, 10).map((team) => (
-          <Row>
+          <Row key={team.team}>
             <Rank>{team.order}</Rank>
             <TeamData>
               <span>{team.team}</span>

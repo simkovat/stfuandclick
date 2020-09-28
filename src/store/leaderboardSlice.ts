@@ -2,7 +2,7 @@ import { LeaderBoardDataT, TeamDataT } from '../types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { AppThunk } from './store';
-import { getLeaderboard } from '../api/getLeaderBoard';
+import { getLeaderboardApi } from '../api/getLeaderBoard';
 
 export type LeaderBoardStateT = {
   data: TeamDataT[] | null;
@@ -49,7 +49,7 @@ export const fetchLeaderboard = (): AppThunk => async (dispatch) => {
   dispatch(getLeaderBoardPending());
   let leaderboard;
   try {
-    leaderboard = await getLeaderboard();
+    leaderboard = await getLeaderboardApi();
   } catch (err) {
     dispatch(getLeaderBoardFailed(err.toString()));
     return;
