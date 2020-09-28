@@ -5,9 +5,6 @@ export const Wrapper = styled.div`
   font-weight: normal;
   margin-bottom: 20px;
 `;
-export const TableWrapper = styled.ul`
-  overflow: scroll;
-`;
 
 export const Headers = styled.div`
   margin-left: 10%;

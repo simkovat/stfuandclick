@@ -1,13 +1,5 @@
 import { FC, useEffect } from 'react';
-import {
-  Headers,
-  Name,
-  Rank,
-  Row,
-  TableWrapper,
-  TeamData,
-  Wrapper,
-} from './boardStyles';
+import { Headers, Name, Rank, Row, TeamData, Wrapper } from './boardStyles';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Error } from '../Error';
@@ -51,3 +43,7 @@ export const LeaderBoard: FC = () => {
     </Wrapper>
   );
 };
+
+export const TableWrapper = styled.ul`
+  overflow: scroll;
+`;

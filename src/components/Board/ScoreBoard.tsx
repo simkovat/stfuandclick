@@ -1,13 +1,5 @@
-import { FC, useEffect } from 'react';
-import {
-  Headers,
-  Name,
-  Rank,
-  Row,
-  TableWrapper,
-  TeamData,
-  Wrapper,
-} from './boardStyles';
+import { FC, useEffect, useRef } from 'react';
+import { Headers, Name, Rank, Row, TeamData, Wrapper } from './boardStyles';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Error } from '../Error';
@@ -30,16 +22,18 @@ export const ScoreBoard: FC = () => {
     dispatch(fetchLeaderboard());
   }, [dispatch]);
 
+  const scrollToRef = (element: HTMLLIElement) =>
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  useEffect(() => {
+    myRef.current && scrollToRef(myRef.current);
+  }, [data]);
+
+  const myRef = useRef<HTMLLIElement>(null);
+
   if (pending) return <Loading />;
   if (error) return <Error />;
   if (data?.length === 0) return <NoData />;
-
-  const myTeamIndex = data?.findIndex((team) => team.team === teamName);
-  const dataSliced = myTeamIndex
-    ? data?.slice(myTeamIndex - 3, myTeamIndex + 4)
-    : data;
-
-  console.log({ data, myTeamIndex, dataSliced });
 
   return (
     <Wrapper>
@@ -48,10 +42,10 @@ export const ScoreBoard: FC = () => {
         <span>CLICKS</span>
       </Headers>
       <TableWrapper>
-        {dataSliced?.map((team) => {
+        {data?.map((team) => {
           if (team.team === teamName) {
             return (
-              <HighlightedRow key={team.team}>
+              <HighlightedRow key={team.team} ref={myRef}>
                 <Rank>{team.order}</Rank>
                 <TeamData>
                   <Name>{team.team}</Name>
@@ -75,6 +69,11 @@ export const ScoreBoard: FC = () => {
     </Wrapper>
   );
 };
+
+export const TableWrapper = styled.ul`
+  overflow: scroll;
+  height: 276px;
+`;
 
 const HighlightedRow = styled.li`
   background-color: ${({ theme }) => theme.colors.primary};
