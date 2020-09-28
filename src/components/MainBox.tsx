@@ -15,8 +15,8 @@ const Wrapper = styled.div`
   border: solid 3px #4990e2;
   border-radius: 10px;
   width: 60%;
-  max-width: 500px;
-  height: 650px;
+  max-width: 550px;
+  max-height: 675px;
   margin: 35px 0;
   padding: 10px 0 20px 0;
   display: flex;
@@ -26,5 +26,5 @@ const Wrapper = styled.div`
 `;
 const Footer = styled.span`
   font-style: italic;
-  margin-bottom: 20px;
+  margin: 15px 0;
 `;

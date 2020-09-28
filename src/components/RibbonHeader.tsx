@@ -18,10 +18,9 @@ const Wrapper = styled.div`
   color: white;
   font-size: 0.9em;
   position: relative;
-  /* width: 245px; */
-  /* height: 50px; */
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 `;
 const Rectangle = styled.div`
   width: 150px;
