@@ -1,11 +1,24 @@
+import { useDispatch, useSelector } from 'react-redux';
+
+import { BigClickButton } from '../components/BigClickButton';
 import { FC } from 'react';
 import { Layout } from '../components/Layout';
+import { MainBox } from '../components/MainBox';
 import React from 'react';
+import { SessionStats } from '../components/SessionStats';
+import { postClick } from '../store/sessionSlice';
+import { sessionSelector } from '../store/selectors/sessionSelector';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
 export const TeamPage: FC = () => {
   const { team } = useParams<{ team: string }>();
+  const dispatch = useDispatch();
+  const session = useSelector(sessionSelector);
+
+  const handleClick = () => {
+    dispatch(postClick(team, session.data.token));
+  };
   return (
     <Layout>
       <Caption>
@@ -15,6 +28,13 @@ export const TeamPage: FC = () => {
         Too lazy to click? Let your pals click for you:
         <LinkBox>{window.location.href}</LinkBox>
       </Invitation>
+      <MainBox>
+        <BigClickButton onClick={handleClick} />
+        <SessionStats
+          yourClicks={session.data.yourClicks}
+          teamClicks={session.data.teamClicks}
+        />
+      </MainBox>
     </Layout>
   );
 };

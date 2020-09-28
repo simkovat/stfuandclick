@@ -1,16 +1,11 @@
 import { FC } from 'react';
-import { LeaderBoard } from './LeaderBoard';
 import React from 'react';
-import { RibbonHeader } from './RibbonHeader';
-import { TeamForm } from './TeamForm';
 import styled from 'styled-components';
 
-export const MainBox: FC = () => {
+export const MainBox: FC = ({ children }) => {
   return (
     <Wrapper>
-      <TeamForm />
-      <RibbonHeader title={'TOP 10 Clickers'} />
-      <LeaderBoard />
+      {children}
       <Footer>Want to be top? STFU and click!</Footer>
     </Wrapper>
   );
@@ -25,11 +20,11 @@ const Wrapper = styled.div`
   margin: 35px 0;
   padding: 10px 0 20px 0;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
   background-color: #fff;
 `;
 const Footer = styled.span`
   font-style: italic;
-  align-self: flex-end;
+  margin-bottom: 20px;
 `;

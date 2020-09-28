@@ -46,6 +46,7 @@ export const LeaderBoard: FC = () => {
 const Wrapper = styled.div`
   width: 100%;
   font-weight: normal;
+  margin-bottom: 20px;
 `;
 const TableWrapper = styled.ul``;
 
