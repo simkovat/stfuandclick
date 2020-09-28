@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   justify-content: center;
   font-style: italic;
   font-weight: lighter;
-  background-color: lightgrey;
+  background-color: #f1f2f3;
   padding: 20px 0;
   & span > a {
     color: #4990e2;

@@ -1,25 +1,35 @@
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Error } from './Error';
+import { Loading } from './Loading';
+import { NoData } from './NoData';
 import React from 'react';
 import { RootStateT } from '../store/rootReducer';
 import { fetchLeaderboard } from '../store/leaderboardSlice';
 import styled from 'styled-components';
 
 export const LeaderBoard: FC = () => {
-  const { data } = useSelector((state: RootStateT) => state.leaderboard);
+  const { data, pending, error } = useSelector(
+    (state: RootStateT) => state.leaderboard
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchLeaderboard());
   }, [dispatch]);
+
+  if (pending) return <Loading />;
+  if (error) return <Error />;
+  if (data?.length === 0) return <NoData />;
+
   return (
     <Wrapper>
       <Headers>
         <span>TEAM</span>
         <span>CLICKS</span>
       </Headers>
-      {!!data &&
-        data.map((team) => (
+      <TableWrapper>
+        {data?.slice(0, 10).map((team) => (
           <Row>
             <Rank>{team.order}</Rank>
             <TeamData>
@@ -28,14 +38,16 @@ export const LeaderBoard: FC = () => {
             </TeamData>
           </Row>
         ))}
+      </TableWrapper>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.ul`
+const Wrapper = styled.div`
   width: 100%;
   font-weight: normal;
 `;
+const TableWrapper = styled.ul``;
 
 const Headers = styled.div`
   margin-left: 10%;
@@ -48,11 +60,11 @@ const Headers = styled.div`
   font-weight: bold;
 `;
 const Row = styled.li`
-  background-color: lightskyblue;
+  background-color: #cee5f9;
   padding: 0 10px 0 15px;
   display: flex;
   &:nth-child(even) {
-    background-color: lightblue;
+    background-color: #e4f0fe;
   }
 `;
 const Rank = styled.div`

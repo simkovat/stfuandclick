@@ -13,7 +13,7 @@ export const Header: FC = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: #4990e2;
+  background-color: #4890e2;
   color: #fff;
   font-weight: bold;
   display: flex;

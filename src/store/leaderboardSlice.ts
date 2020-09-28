@@ -46,7 +46,7 @@ export const {
 } = leaderboardSlice.actions;
 
 export const fetchLeaderboard = (): AppThunk => async (dispatch) => {
-  dispatch(getLeaderBoardPending);
+  dispatch(getLeaderBoardPending());
   let leaderboard;
   try {
     leaderboard = await getLeaderboard();

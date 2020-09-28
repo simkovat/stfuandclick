@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 const Rectangle = styled.div`
   width: 150px;
   height: 35px;
-  background-color: #4990e2;
+  background-color: #4890e2;
   text-align: center;
   padding: 10px 0;
   z-index: 3;
@@ -35,7 +35,7 @@ const Rectangle = styled.div`
 const Shape = styled.div`
   width: 60px;
   height: 35px;
-  background-color: #1f6bad;
+  background-color: #3f7ec2;
   position: absolute;
   top: 10px;
 

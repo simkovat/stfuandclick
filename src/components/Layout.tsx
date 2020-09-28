@@ -16,7 +16,7 @@ export const Layout: FC = ({ children }) => {
 
 const Content = styled.div`
   min-height: 80vh;
-  background-color: lightgrey;
+  background-color: #f1f2f3;
   display: flex;
   flex-direction: column;
   align-items: center;
