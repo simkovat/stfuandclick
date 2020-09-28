@@ -1,5 +1,16 @@
-//TODO: add Theme type
-export const defaultTheme = {
+export interface ThemeT {
+  colors: Record<
+    | 'background'
+    | 'primary'
+    | 'darkPrimary'
+    | 'tableRowDark'
+    | 'tableRowLight'
+    | 'textGrey'
+    | 'error',
+    string
+  >;
+}
+export const defaultTheme: ThemeT = {
   colors: {
     background: '#f1f2f3',
     primary: '#4890e2',
