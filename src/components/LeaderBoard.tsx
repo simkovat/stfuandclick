@@ -55,7 +55,7 @@ const Headers = styled.div`
   width: 90%;
   display: flex;
   justify-content: space-between;
-  color: ${({ theme }) => theme.colors.tableHeader};
+  color: ${({ theme }) => theme.colors.textGrey};
   font-size: 0.7em;
   font-weight: bold;
 `;

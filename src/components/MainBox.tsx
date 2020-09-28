@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   border-radius: 10px;
   width: 60%;
   max-width: 500px;
-  height: 600px;
+  height: 650px;
   margin: 35px 0;
   padding: 10px 0 20px 0;
   display: flex;

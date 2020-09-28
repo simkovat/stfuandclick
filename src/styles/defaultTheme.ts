@@ -6,7 +6,7 @@ export const defaultTheme = {
     darkPrimary: '#3f7ec2',
     tableRowDark: '#cee5f9',
     tableRowLight: '#e4f0fe',
-    tableHeader: '#989898',
+    textGrey: '#989898',
     error: '#dd1010',
   },
 };
