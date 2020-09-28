@@ -1,9 +1,10 @@
+import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { FC } from 'react';
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { postClick } from '../store/sessionSlice';
-import { sessionTokenSelector } from '../store/selectors/sessionTokenSelector';
+import { sessionSelector } from '../store/selectors/sessionSelector';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 
@@ -14,16 +15,23 @@ interface FormData {
   teamName: string;
 }
 
+// TODO: add case if there is an error
 export const TeamForm: FC = () => {
   const { register, handleSubmit, errors } = useForm<FormData>();
-  const sessionToken = useSelector(sessionTokenSelector);
+  const session = useSelector(sessionSelector);
+
   const dispatch = useDispatch();
+  const [team, setTeam] = useState<string>();
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
-    dispatch(postClick(data.teamName, sessionToken));
+    dispatch(postClick(data.teamName, session.data.token));
+    setTeam(data.teamName);
   };
-  console.log(errors);
+
+  //TODO: does this always work?
+  if (session.success) {
+    return <Redirect to={`/${team}`} />;
+  }
 
   return (
     <Wrapper onSubmit={handleSubmit(onSubmit)}>

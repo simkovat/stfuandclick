@@ -12,6 +12,7 @@ export type SessionStateT = {
   };
   pending: boolean;
   error: string | null;
+  success: boolean;
 };
 
 const initialState: SessionStateT = {
@@ -22,6 +23,7 @@ const initialState: SessionStateT = {
   },
   pending: false,
   error: null,
+  success: false,
 };
 
 export const sessionSlice = createSlice({
@@ -38,6 +40,7 @@ export const sessionSlice = createSlice({
       state.data.yourClicks = action.payload.data.your_clicks;
       state.data.teamClicks = action.payload.data.team_clicks;
       state.pending = false;
+      state.success = true;
     },
     recordClickFailed(state, action: PayloadAction<string>) {
       state.error = action.payload;
