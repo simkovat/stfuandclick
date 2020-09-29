@@ -1,9 +1,8 @@
-import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { FC } from 'react';
 import { PendingButton } from './PendingButton';
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { postClick } from '../store/sessionSlice';
 import { sessionSelector } from '../store/selectors/sessionSelector';
 import styled from 'styled-components';
@@ -13,15 +12,16 @@ interface FormData {
   teamName: string;
 }
 
-export const TeamForm: FC = () => {
+interface Props {
+  setTeam: (team: string) => void;
+}
+
+export const TeamForm: FC<Props> = ({ setTeam }) => {
   const dispatch = useDispatch();
   const {
     pending,
-    success,
     data: { token },
   } = useSelector(sessionSelector);
-
-  const [team, setTeam] = useState<string>();
 
   const {
     register,
@@ -33,11 +33,6 @@ export const TeamForm: FC = () => {
     dispatch(postClick(data.teamName, token));
     setTeam(data.teamName);
   };
-
-  //TODO: is this the right approach?
-  if (success) {
-    return <Redirect to={`/${team}`} />;
-  }
 
   return (
     <Wrapper onSubmit={handleSubmit(onSubmit)}>
