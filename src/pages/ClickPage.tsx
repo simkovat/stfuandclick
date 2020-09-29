@@ -12,16 +12,21 @@ import { sessionSelector } from '../store/selectors/sessionSelector';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
-export const TeamPage: FC = () => {
-  const { team } = useParams<{ team: string }>();
+export const ClickPage: FC = () => {
   const dispatch = useDispatch();
-  const session = useSelector(sessionSelector);
 
-  //TODO pouzit useEffect aby se jeden api post poslal uz pri renderu?
+  const { team } = useParams<{ team: string }>();
+  const {
+    pending,
+    data: { token, yourClicks, teamClicks },
+  } = useSelector(sessionSelector);
 
   const handleClick = () => {
-    dispatch(postClick(team, session.data.token));
+    dispatch(postClick(team, token));
   };
+
+  const teamLink = window.location.href;
+
   return (
     <Layout>
       <Caption>
@@ -29,14 +34,11 @@ export const TeamPage: FC = () => {
       </Caption>
       <Invitation>
         Too lazy to click? Let your pals click for you:
-        <LinkBox>{window.location.href}</LinkBox>
+        <LinkBox>{teamLink}</LinkBox>
       </Invitation>
       <MainBox>
-        <BigClickButton onClick={handleClick} />
-        <SessionStats
-          yourClicks={session.data.yourClicks}
-          teamClicks={session.data.teamClicks}
-        />
+        <BigClickButton onClick={handleClick} isPending={pending} />
+        <SessionStats yourClicks={yourClicks} teamClicks={teamClicks} />
         <ScoreBoard />
       </MainBox>
     </Layout>

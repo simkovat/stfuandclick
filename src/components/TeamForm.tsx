@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { PendingButton } from './PendingButton';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { postClick } from '../store/sessionSlice';
@@ -8,28 +9,33 @@ import { sessionSelector } from '../store/selectors/sessionSelector';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 
-//TODO make button a pending button
-//TODO display validation errors
-
 interface FormData {
   teamName: string;
 }
 
-// TODO: add case if there is an error
 export const TeamForm: FC = () => {
-  const { register, handleSubmit, errors } = useForm<FormData>();
-  const session = useSelector(sessionSelector);
-
   const dispatch = useDispatch();
+  const {
+    pending,
+    success,
+    data: { token },
+  } = useSelector(sessionSelector);
+
   const [team, setTeam] = useState<string>();
 
+  const {
+    register,
+    handleSubmit,
+    // errors
+  } = useForm<FormData>();
+
   const onSubmit = (data: FormData) => {
-    dispatch(postClick(data.teamName, session.data.token));
+    dispatch(postClick(data.teamName, token));
     setTeam(data.teamName);
   };
 
-  //TODO: does this always work?
-  if (session.success) {
+  //TODO: is this the right approach?
+  if (success) {
     return <Redirect to={`/${team}`} />;
   }
 
@@ -44,7 +50,9 @@ export const TeamForm: FC = () => {
           ref={register({ required: true, maxLength: 50 })}
         />
       </InputWrapper>
-      <Button type='submit'>CLICK!</Button>
+      <Button type='submit' isPending={pending}>
+        CLICK!
+      </Button>
     </Wrapper>
   );
 };
@@ -78,7 +86,7 @@ const Input = styled.input`
     font-style: italic;
   }
 `;
-const Button = styled.button`
+const Button = styled(PendingButton)`
   width: 40%;
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 5px;
