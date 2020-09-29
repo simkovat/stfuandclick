@@ -19,7 +19,7 @@ const Button = styled(PendingButton)`
   display: flex;
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 5px;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   font-weight: bold;
   font-size: 1.5em;
   margin: 0 10px 40px 10px;

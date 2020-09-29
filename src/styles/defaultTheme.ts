@@ -5,8 +5,9 @@ export interface ThemeT {
     | 'darkPrimary'
     | 'tableRowDark'
     | 'tableRowLight'
-    | 'textGrey'
-    | 'error',
+    | 'textLight'
+    | 'error'
+    | 'white',
     string
   >;
 }
@@ -19,7 +20,8 @@ export const defaultTheme: ThemeT = {
     darkPrimary: '#3f7ec2',
     tableRowDark: '#cee5f9',
     tableRowLight: '#e4f0fe',
-    textGrey: '#989898',
+    textLight: '#989898',
     error: '#dd1010',
+    white: '#fff',
   },
 };

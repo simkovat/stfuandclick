@@ -39,7 +39,6 @@ const StatsItemWrapper = styled.div`
 `;
 const Title = styled.span`
   font-style: italic;
-  font-weight: normal;
   margin-bottom: 5px;
 `;
 const Count = styled.span`

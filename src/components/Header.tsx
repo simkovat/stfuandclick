@@ -14,7 +14,7 @@ export const Header: FC = () => {
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   font-weight: bold;
   display: flex;
   justify-content: center;

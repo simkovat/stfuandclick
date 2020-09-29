@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   width: 100%;
   font-style: italic;
   font-weight: lighter;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.white};
   padding: 50px;
   color: ${({ theme }) => theme.colors.error};
 `;

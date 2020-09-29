@@ -17,10 +17,9 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   font-style: italic;
-  font-weight: lighter;
-  background-color: #f1f2f3;
+  background-color: ${({ theme }) => theme.colors.background};
   padding: 20px 10px;
   & span > a {
-    color: #4990e2;
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;

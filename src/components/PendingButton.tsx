@@ -20,7 +20,7 @@ export const PendingButton: FC<ButtonProps> = ({
 };
 
 const ButtonLoader = styled(ButtonLoaderSvg)`
-  fill: #fff;
+  fill: ${({ theme }) => theme.colors.white};
   animation: rotation 2s infinite linear;
   opacity: 0.7;
   @keyframes rotation {

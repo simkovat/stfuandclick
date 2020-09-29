@@ -15,7 +15,7 @@ export const RibbonHeader: FC<Props> = ({ title }) => (
 
 const Wrapper = styled.div`
   font-weight: bold;
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
   font-size: 0.9em;
   position: relative;
   display: flex;

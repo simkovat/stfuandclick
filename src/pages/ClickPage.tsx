@@ -66,7 +66,7 @@ const LinkBox = styled.div`
   border: solid 1px grey;
   padding: 5px 8px;
   width: fit-content;
-  background-color: whitesmoke;
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: 5px;
   margin-left: 5px;
 `;

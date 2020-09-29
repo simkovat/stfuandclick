@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
-  font-weight: normal;
   margin-bottom: 20px;
+  font-weight: bold;
 `;
 
 export const Headers = styled.div`
@@ -12,14 +12,14 @@ export const Headers = styled.div`
   width: 90%;
   display: flex;
   justify-content: space-between;
-  color: ${({ theme }) => theme.colors.textGrey};
+  color: ${({ theme }) => theme.colors.textLight};
   font-size: 0.7em;
-  font-weight: bold;
 `;
 export const Row = styled.li`
   background-color: ${({ theme }) => theme.colors.tableRowDark};
   padding: 0 10px 0 15px;
   display: flex;
+
   &:nth-child(even) {
     background-color: ${({ theme }) => theme.colors.tableRowLight};
   }

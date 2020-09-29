@@ -13,7 +13,7 @@ export const MainBox: FC = ({ children }) => {
 };
 
 const Wrapper = styled.div`
-  border: solid 3px #4990e2;
+  border: solid 3px ${({ theme }) => theme.colors.primary};
   border-radius: 10px;
   width: 60%;
   width: 550px;
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.white};
 
   ${mediaSmallTabletMax} {
     width: 100%;

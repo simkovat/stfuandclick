@@ -80,7 +80,7 @@ const Label = styled.label`
   margin-bottom: 10px;
 `;
 const Input = styled.input`
-  border: 1px solid ${({ theme }) => theme.colors.textGrey};
+  border: 1px solid ${({ theme }) => theme.colors.textLight};
   border-radius: 5px;
   padding: 5px 8px;
 
@@ -92,7 +92,7 @@ const Button = styled(PendingButton)`
   width: 40%;
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 5px;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   font-weight: bold;
   font-size: 1.5em;
   height: 55px;

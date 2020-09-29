@@ -80,5 +80,5 @@ const HighlightedRow = styled.li`
   padding: 0 10px 0 15px;
   display: flex;
   font-size: 1.5em;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
 `;
