@@ -1,23 +1,18 @@
-import { FC, useEffect } from 'react';
 import { Headers, Name, Rank, Row, TeamData, Wrapper } from './boardStyles';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Error } from '../Error';
+import { FC } from 'react';
 import { Loading } from '../Loading';
 import { NoData } from '../NoData';
 import React from 'react';
 import { RootStateT } from '../../store/rootReducer';
-import { fetchLeaderboard } from '../../store/leaderboardSlice';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 export const LeaderBoard: FC = () => {
   const { data, pending, error } = useSelector(
     (state: RootStateT) => state.leaderboard
   );
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchLeaderboard());
-  }, [dispatch]);
 
   if (pending) return <Loading />;
   if (error) return <Error />;

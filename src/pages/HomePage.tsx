@@ -1,4 +1,5 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Layout } from '../components/Layout';
 import { LeaderBoard } from '../components/Board/LeaderBoard';
@@ -8,12 +9,18 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { RibbonHeader } from '../components/RibbonHeader';
 import { TeamForm } from '../components/TeamForm';
-import { sessionSelector } from '../store/selectors/sessionSelector';
-import { useSelector } from 'react-redux';
+import { fetchLeaderboard } from '../store/leaderboardSlice';
+import { recordClickSelector } from '../store/selectors/recordClickSelector';
 
 export const HomePage: FC = () => {
-  const { success: teamSubmissionSuccess } = useSelector(sessionSelector);
+  const dispatch = useDispatch();
+
+  const { success: teamSubmissionSuccess } = useSelector(recordClickSelector);
   const [team, setTeam] = useState<string>();
+
+  useEffect(() => {
+    dispatch(fetchLeaderboard());
+  }, [dispatch]);
 
   //TODO is this the right approach?
   if (teamSubmissionSuccess) {

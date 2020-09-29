@@ -1,14 +1,15 @@
+import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { BigClickButton } from '../components/BigClickButton';
-import { FC } from 'react';
 import { Layout } from '../components/Layout';
 import { MainBox } from '../components/MainBox';
 import React from 'react';
 import { ScoreBoard } from '../components/Board/ScoreBoard';
 import { SessionStats } from '../components/SessionStats';
+import { fetchLeaderboard } from '../store/leaderboardSlice';
 import { postClick } from '../store/recordClickSlice';
-import { sessionSelector } from '../store/selectors/sessionSelector';
+import { recordClickSelector } from '../store/selectors/recordClickSelector';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
@@ -17,9 +18,13 @@ export const ClickPage: FC = () => {
 
   const { team } = useParams<{ team: string }>();
   const {
-    pending,
+    pending: recordClickPending,
     data: { token, yourClicks, teamClicks },
-  } = useSelector(sessionSelector);
+  } = useSelector(recordClickSelector);
+
+  useEffect(() => {
+    dispatch(fetchLeaderboard());
+  }, [dispatch]);
 
   const handleClick = () => {
     dispatch(postClick(team, token));
@@ -37,7 +42,7 @@ export const ClickPage: FC = () => {
         <LinkBox>{teamLink}</LinkBox>
       </Invitation>
       <MainBox>
-        <BigClickButton onClick={handleClick} isPending={pending} />
+        <BigClickButton onClick={handleClick} isPending={recordClickPending} />
         <SessionStats yourClicks={yourClicks} teamClicks={teamClicks} />
         <ScoreBoard />
       </MainBox>

@@ -1,26 +1,20 @@
 import { FC, useEffect, useRef } from 'react';
 import { Headers, Name, Rank, Row, TeamData, Wrapper } from './boardStyles';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Error } from '../Error';
 import { Loading } from '../Loading';
 import { NoData } from '../NoData';
 import React from 'react';
 import { RootStateT } from '../../store/rootReducer';
-import { fetchLeaderboard } from '../../store/leaderboardSlice';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export const ScoreBoard: FC = () => {
   const { data, pending, error } = useSelector(
     (state: RootStateT) => state.leaderboard
   );
   const { team: teamName } = useParams<{ team: string }>();
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchLeaderboard());
-  }, [dispatch]);
 
   const scrollToRef = (element: HTMLLIElement) =>
     element.scrollIntoView({ behavior: 'smooth', block: 'center' });

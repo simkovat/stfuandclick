@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { PendingButton } from './PendingButton';
 import React from 'react';
 import { postClick } from '../store/recordClickSlice';
-import { sessionSelector } from '../store/selectors/sessionSelector';
+import { recordClickSelector } from '../store/selectors/recordClickSelector';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 
@@ -22,7 +22,7 @@ export const TeamForm: FC<Props> = ({ setTeam }) => {
   const {
     pending,
     data: { token },
-  } = useSelector(sessionSelector);
+  } = useSelector(recordClickSelector);
 
   const { register, handleSubmit, errors } = useForm<FormData>();
 
