@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { BigClickButton } from '../components/BigClickButton';
+import { Error } from '../components/Error';
 import { Layout } from '../components/Layout';
 import { MainBox } from '../components/MainBox';
 import React from 'react';
@@ -19,6 +20,7 @@ export const ClickPage: FC = () => {
   const { team } = useParams<{ team: string }>();
   const {
     pending: recordClickPending,
+    error,
     data: { token, yourClicks, teamClicks },
   } = useSelector(recordClickSelector);
 
@@ -41,6 +43,8 @@ export const ClickPage: FC = () => {
         Too lazy to click? Let your pals click for you:
         <LinkBox>{teamLink}</LinkBox>
       </Invitation>
+      {error && <Error />}
+
       <MainBox>
         <BigClickButton onClick={handleClick} isPending={recordClickPending} />
         <SessionStats yourClicks={yourClicks} teamClicks={teamClicks} />
@@ -65,6 +69,7 @@ const Invitation = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: 35px;
 `;
 
 const LinkBox = styled.div`

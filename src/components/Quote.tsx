@@ -18,6 +18,7 @@ export const Quote: FC<Props> = ({ text, author }) => (
 const QuoteWrapper = styled.div`
   font-style: italic;
   min-width: 150px;
+  margin-bottom: 35px;
 `;
 const QuoteAuthor = styled.span`
   width: 100%;

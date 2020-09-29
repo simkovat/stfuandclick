@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 
 export const Error: FC = () => {
-  return <Wrapper>Something went wrong.</Wrapper>;
+  return <Wrapper>Sorry, something went wrong.</Wrapper>;
 };
 
 const Wrapper = styled.div`
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   width: 100%;
   font-style: italic;
   font-weight: lighter;
-  background-color: ${({ theme }) => theme.colors.white};
-  padding: 50px;
+  background-color: transparent;
+  padding: 30px;
   color: ${({ theme }) => theme.colors.error};
 `;

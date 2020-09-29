@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Error } from '../components/Error';
 import { Layout } from '../components/Layout';
 import { LeaderBoard } from '../components/Board/LeaderBoard';
 import { MainBox } from '../components/MainBox';
@@ -15,7 +16,9 @@ import { recordClickSelector } from '../store/selectors/recordClickSelector';
 export const HomePage: FC = () => {
   const dispatch = useDispatch();
 
-  const { success: teamSubmissionSuccess } = useSelector(recordClickSelector);
+  const { success: teamSubmissionSuccess, error } = useSelector(
+    recordClickSelector
+  );
   const [team, setTeam] = useState<string>();
 
   useEffect(() => {
@@ -33,6 +36,7 @@ export const HomePage: FC = () => {
         text={"It's really simple, you just need to click as fast as you can."}
         author={'anonymous'}
       />
+      {error && <Error />}
       <MainBox>
         <TeamForm setTeam={setTeam} />
         <RibbonHeader title={'TOP 10 Clickers'} />

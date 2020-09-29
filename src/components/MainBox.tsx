@@ -18,12 +18,13 @@ const Wrapper = styled.div`
   width: 60%;
   width: 550px;
   height: 675px;
-  margin: 35px 0;
+  margin-bottom: 35px;
   padding: 10px 0 20px 0;
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.white};
+  position: relative;
 
   ${mediaSmallTabletMax} {
     width: 100%;
@@ -31,5 +32,7 @@ const Wrapper = styled.div`
 `;
 const Footer = styled.span`
   font-style: italic;
-  margin: 15px 0;
+  margin-top: 15px;
+  position: absolute;
+  bottom: 30px;
 `;
