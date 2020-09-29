@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { BigClickButton } from '../components/BigClickButton';
+import { CopyToClipboardButton } from '../components/CopyToClipboardButton';
 import { Error } from '../components/Error';
 import { Layout } from '../components/Layout';
 import { MainBox } from '../components/MainBox';
@@ -42,6 +43,7 @@ export const ClickPage: FC = () => {
       <Invitation>
         Too lazy to click? Let your pals click for you:
         <LinkBox>{teamLink}</LinkBox>
+        <CopyToClipboardButton stringToCopy={teamLink} />
       </Invitation>
       {error && <Error />}
 
