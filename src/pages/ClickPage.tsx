@@ -7,7 +7,7 @@ import { MainBox } from '../components/MainBox';
 import React from 'react';
 import { ScoreBoard } from '../components/Board/ScoreBoard';
 import { SessionStats } from '../components/SessionStats';
-import { postClick } from '../store/sessionSlice';
+import { postClick } from '../store/recordClickSlice';
 import { sessionSelector } from '../store/selectors/sessionSelector';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';

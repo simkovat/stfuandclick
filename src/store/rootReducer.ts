@@ -1,10 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { leaderboardSlice } from './leaderboardSlice';
-import { sessionSlice } from './sessionSlice';
+import { recordClickSlice } from './recordClickSlice';
 
 export const rootReducer = combineReducers({
   leaderboard: leaderboardSlice.reducer,
-  session: sessionSlice.reducer,
+  recordClick: recordClickSlice.reducer,
 });
 
 export type RootStateT = ReturnType<typeof rootReducer>;

@@ -4,7 +4,7 @@ import { SessionDataT, recordClickApi } from '../api/recordClick';
 import { AppThunk } from './store';
 import { getRandomString } from '../utils/getRandomString';
 
-export type SessionStateT = {
+export type RecordClickStateT = {
   data: {
     token: string;
     yourClicks: number;
@@ -12,10 +12,10 @@ export type SessionStateT = {
   };
   pending: boolean;
   error: string | null;
-  success: boolean;
+  success: boolean | null;
 };
 
-const initialState: SessionStateT = {
+const initialState: RecordClickStateT = {
   data: {
     token: getRandomString(),
     yourClicks: 0,
@@ -23,11 +23,11 @@ const initialState: SessionStateT = {
   },
   pending: false,
   error: null,
-  success: false,
+  success: null,
 };
 
-export const sessionSlice = createSlice({
-  name: 'session',
+export const recordClickSlice = createSlice({
+  name: 'recordClick',
   initialState,
   reducers: {
     generateSessionToken(state) {
@@ -45,6 +45,7 @@ export const sessionSlice = createSlice({
     recordClickFailed(state, action: PayloadAction<string>) {
       state.error = action.payload;
       state.pending = false;
+      state.success = false;
     },
   },
 });
@@ -54,7 +55,7 @@ export const {
   recordClickFailed,
   recordClickSuccess,
   recordClickPending,
-} = sessionSlice.actions;
+} = recordClickSlice.actions;
 
 export const postClick = (team: string, session: string): AppThunk => async (
   dispatch

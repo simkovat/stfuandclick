@@ -4,7 +4,7 @@ import { ErrorMessage } from './FormErrorMessage';
 import { FC } from 'react';
 import { PendingButton } from './PendingButton';
 import React from 'react';
-import { postClick } from '../store/sessionSlice';
+import { postClick } from '../store/recordClickSlice';
 import { sessionSelector } from '../store/selectors/sessionSelector';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
