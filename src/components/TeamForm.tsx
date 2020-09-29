@@ -31,8 +31,6 @@ export const TeamForm: FC<Props> = ({ setTeam }) => {
     setTeam(data.teamName);
   };
 
-  console.log(errors);
-
   return (
     <Wrapper onSubmit={handleSubmit(onSubmit)}>
       <InputWrapper>
