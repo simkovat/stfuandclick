@@ -11,7 +11,7 @@ export async function recordClickApi({
   team: string;
   session: string;
 }): Promise<ClickResultT> {
-  const url = 'https://klikuj.herokuapp.com/api/v1/klik';
+  const url = `${process.env.REACT_APP_API_URL}/klik`;
 
   try {
     const teamResponse = await axios.post<SessionDataT>(url, { team, session });

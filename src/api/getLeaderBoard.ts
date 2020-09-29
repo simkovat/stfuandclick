@@ -4,7 +4,7 @@ import axios from 'axios';
 export type LeaderBoardResultT = { data: TeamDataT[] };
 
 export async function getLeaderboardApi(): Promise<LeaderBoardResultT> {
-  const url = 'https://klikuj.herokuapp.com/api/v1/leaderboard';
+  const url = `${process.env.REACT_APP_API_URL}/leaderboard`;
 
   try {
     const leaderboardResponse = await axios.get<TeamDataT[]>(url);
