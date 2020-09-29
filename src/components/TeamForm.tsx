@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ErrorMessage } from './FormErrorMessage';
 import { FC } from 'react';
 import { PendingButton } from './PendingButton';
 import React from 'react';
@@ -23,16 +24,14 @@ export const TeamForm: FC<Props> = ({ setTeam }) => {
     data: { token },
   } = useSelector(sessionSelector);
 
-  const {
-    register,
-    handleSubmit,
-    // errors
-  } = useForm<FormData>();
+  const { register, handleSubmit, errors } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
     dispatch(postClick(data.teamName, token));
     setTeam(data.teamName);
   };
+
+  console.log(errors);
 
   return (
     <Wrapper onSubmit={handleSubmit(onSubmit)}>
@@ -42,8 +41,17 @@ export const TeamForm: FC<Props> = ({ setTeam }) => {
           type='text'
           placeholder='Your mom'
           name='teamName'
-          ref={register({ required: true, maxLength: 50 })}
+          ref={register({
+            required: { value: true, message: 'Please enter your team name.' },
+            maxLength: {
+              value: 50,
+              message: 'Team name too long, try something shorter.',
+            },
+          })}
         />
+        {errors.teamName && (
+          <ErrorMessage message={errors.teamName.message as string} />
+        )}
       </InputWrapper>
       <Button type='submit' isPending={pending}>
         CLICK!
@@ -54,6 +62,7 @@ export const TeamForm: FC<Props> = ({ setTeam }) => {
 
 const Wrapper = styled.form`
   width: 100%;
+  height: 58px;
   padding: 0 10px;
   display: flex;
   justify-content: space-between;
@@ -63,9 +72,9 @@ const Wrapper = styled.form`
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-
   padding-right: 15px;
   width: 60%;
+  height: 100%;
 `;
 
 const Label = styled.label`

@@ -8,12 +8,6 @@ export async function getLeaderboardApi(): Promise<LeaderBoardResultT> {
 
   try {
     const leaderboardResponse = await axios.get<TeamDataT[]>(url);
-    // let pageCount = 0
-    // const pageLinks = parseLink(issuesResponse.headers.link)
-
-    // if (pageLinks !== null) {
-    //   pageCount = getPageCount(pageLinks)
-    // }
 
     return { data: leaderboardResponse.data };
   } catch (err) {
