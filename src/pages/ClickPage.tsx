@@ -10,6 +10,7 @@ import React from 'react';
 import { ScoreBoard } from '../components/Board/ScoreBoard';
 import { SessionStats } from '../components/SessionStats';
 import { fetchLeaderboard } from '../store/leaderboardSlice';
+import { mediaSmallTabletMax } from '../styles/constants';
 import { postClick } from '../store/recordClickSlice';
 import { recordClickSelector } from '../store/selectors/recordClickSelector';
 import styled from 'styled-components';
@@ -59,6 +60,17 @@ export const ClickPage: FC = () => {
 const Caption = styled.div`
   font-size: 2em;
   margin-bottom: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+
+  ${mediaSmallTabletMax} {
+    max-width: 95%;
+    font-size: 1.5em;
+    white-space: break-spaces;
+    text-align: center;
+  }
 
   > span {
     font-weight: bold;
@@ -72,6 +84,10 @@ const Invitation = styled.div`
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 35px;
+
+  ${mediaSmallTabletMax} {
+    max-width: 95%;
+  }
 `;
 
 const LinkBox = styled.div`
@@ -81,4 +97,9 @@ const LinkBox = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 5px;
   margin-left: 5px;
+  overflow: scroll;
+
+  ${mediaSmallTabletMax} {
+    margin: 10px 0;
+  }
 `;

@@ -12,7 +12,6 @@ export interface ThemeT {
   >;
 }
 
-//TODO shoudl not have color names
 export const defaultTheme: ThemeT = {
   colors: {
     background: '#f1f2f3',

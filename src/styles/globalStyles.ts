@@ -19,7 +19,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family:  Helvetica, Sans-Serif;
+    font-family: Helvetica, Sans-Serif;
+    background-color: #f1f2f3;
   }
   a
   {
