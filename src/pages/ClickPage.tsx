@@ -1,17 +1,17 @@
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { BigClickButton } from '../components/BigClickButton';
-import { CopyToClipboardButton } from '../components/CopyToClipboardButton';
+import { BigClickButton } from '../components/buttons/BigClickButton';
+import { CopyToClipboardButton } from '../components/buttons/CopyToClipboardButton';
 import { Error } from '../components/Error';
-import { Layout } from '../components/Layout';
+import { Layout } from '../components/layout/Layout';
 import { MainBox } from '../components/MainBox';
 import React from 'react';
-import { ScoreBoard } from '../components/Board/ScoreBoard';
+import { ScoreBoard } from '../components/board/ScoreBoard';
 import { SessionStats } from '../components/SessionStats';
-import { fetchLeaderboard } from '../store/leaderboardSlice';
+import { fetchLeaderboard } from '../store/slices/leaderboardSlice';
 import { mediaSmallTabletMax } from '../styles/constants';
-import { postClick } from '../store/recordClickSlice';
+import { postClick } from '../store/slices/recordClickSlice';
 import { recordClickSelector } from '../store/selectors/recordClickSelector';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';

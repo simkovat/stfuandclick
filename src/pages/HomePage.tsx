@@ -2,15 +2,15 @@ import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Error } from '../components/Error';
-import { Layout } from '../components/Layout';
-import { LeaderBoard } from '../components/Board/LeaderBoard';
+import { Layout } from '../components/layout/Layout';
+import { LeaderBoard } from '../components/board/LeaderBoard';
 import { MainBox } from '../components/MainBox';
 import { Quote } from '../components/Quote';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { RibbonHeader } from '../components/RibbonHeader';
-import { TeamForm } from '../components/TeamForm';
-import { fetchLeaderboard } from '../store/leaderboardSlice';
+import { TeamForm } from '../components/form/TeamForm';
+import { fetchLeaderboard } from '../store/slices/leaderboardSlice';
 import { recordClickSelector } from '../store/selectors/recordClickSelector';
 
 export const HomePage: FC = () => {

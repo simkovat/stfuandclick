@@ -1,9 +1,9 @@
 import { TeamDataT } from '../types';
 import axios from 'axios';
 
-export type LeaderBoardResultT = { data: TeamDataT[] };
+export type LeaderboardResultT = { data: TeamDataT[] };
 
-export async function getLeaderboardApi(): Promise<LeaderBoardResultT> {
+export async function getLeaderboardApi(): Promise<LeaderboardResultT> {
   const url = `${process.env.REACT_APP_API_URL}/leaderboard`;
 
   try {

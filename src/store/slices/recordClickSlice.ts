@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { SessionDataT, recordClickApi } from '../api/recordClick';
+import { SessionDataT, recordClickApi } from '../../api/recordClickApi';
 
-import { AppThunk } from './store';
-import { getRandomString } from '../utils/getRandomString';
+import { AppThunk } from '../store';
+import { getRandomString } from '../../utils/getRandomString';
 
 export type RecordClickStateT = {
   data: {

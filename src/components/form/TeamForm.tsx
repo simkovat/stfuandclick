@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ErrorMessage } from './FormErrorMessage';
 import { FC } from 'react';
-import { PendingButton } from './PendingButton';
+import { PendingButton } from '../buttons/PendingButton';
 import React from 'react';
-import { postClick } from '../store/recordClickSlice';
-import { recordClickSelector } from '../store/selectors/recordClickSelector';
+import { postClick } from '../../store/slices/recordClickSlice';
+import { recordClickSelector } from '../../store/selectors/recordClickSelector';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 

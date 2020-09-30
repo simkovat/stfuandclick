@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import React from 'react';
-import copyToClipboard from '../assets/copy-to-clipboard.png';
+import copyToClipboard from '../../assets/copy-to-clipboard.png';
 import styled from 'styled-components';
 
 interface Props {

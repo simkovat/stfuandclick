@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, FC } from 'react';
 
-import { ReactComponent as ButtonLoaderSvg } from '../assets/button-loader.svg';
+import { ReactComponent as ButtonLoaderSvg } from '../../assets/button-loader.svg';
 import styled from 'styled-components';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLElement> {

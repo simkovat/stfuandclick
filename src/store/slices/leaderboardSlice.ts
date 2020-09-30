@@ -1,8 +1,8 @@
-import { LeaderBoardDataT, TeamDataT } from '../types';
+import { LeaderBoardDataT, TeamDataT } from '../../types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { AppThunk } from './store';
-import { getLeaderboardApi } from '../api/getLeaderBoard';
+import { AppThunk } from '../store';
+import { getLeaderboardApi } from '../../api/getLeaderBoardApi';
 
 export type LeaderBoardStateT = {
   data: TeamDataT[] | null;

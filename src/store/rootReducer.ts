@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { leaderboardSlice } from './leaderboardSlice';
-import { recordClickSlice } from './recordClickSlice';
+import { leaderboardSlice } from './slices/leaderboardSlice';
+import { recordClickSlice } from './slices/recordClickSlice';
 
 export const rootReducer = combineReducers({
   leaderboard: leaderboardSlice.reducer,
