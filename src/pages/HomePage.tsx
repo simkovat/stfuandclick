@@ -12,6 +12,7 @@ import { RibbonHeader } from '../components/RibbonHeader';
 import { TeamForm } from '../components/form/TeamForm';
 import { fetchLeaderboard } from '../store/slices/leaderboardSlice';
 import { recordClickSelector } from '../store/selectors/recordClickSelector';
+import { routes } from '../router/routes';
 import { useTranslation } from 'react-i18next';
 
 export const HomePage: FC = () => {
@@ -28,7 +29,7 @@ export const HomePage: FC = () => {
   }, [dispatch]);
 
   if (teamSubmissionSuccess) {
-    return <Redirect to={`/${team}`} />;
+    return <Redirect to={`${routes.CLICK_PAGE}/${team}`} />;
   }
 
   return (

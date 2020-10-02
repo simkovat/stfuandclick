@@ -1,4 +1,4 @@
 export const routes = {
   HOME_PAGE: '/',
-  CLICK_PAGE: '/:team',
+  CLICK_PAGE: '/click',
 };

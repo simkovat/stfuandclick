@@ -67,6 +67,7 @@ const Caption = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 70%;
+  letter-spacing: 0.5px;
 
   ${mediaSmallTabletMax} {
     max-width: 95%;
@@ -87,6 +88,7 @@ const Invitation = styled.div`
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 35px;
+  letter-spacing: 0.3px;
 
   ${mediaSmallTabletMax} {
     max-width: 95%;

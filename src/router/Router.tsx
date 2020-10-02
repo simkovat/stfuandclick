@@ -10,7 +10,7 @@ import { routes } from './routes';
 export const Router: FC = () => (
   <Switch>
     <Route path={routes.HOME_PAGE} exact component={HomePage} />
-    <Route path={routes.CLICK_PAGE} exact component={ClickPage} />
+    <Route path={`${routes.CLICK_PAGE}/:team`} exact component={ClickPage} />
     <Route component={NotFoundPage} />
   </Switch>
 );
