@@ -7,7 +7,7 @@ import { Error } from '../components/Error';
 import { Layout } from '../components/layout/Layout';
 import { MainBox } from '../components/MainBox';
 import React from 'react';
-import { ScoreBoard } from '../components/board/ScoreBoard';
+import { ScoreBoard } from '../components/boardComponents/ScoreBoard';
 import { SessionStats } from '../components/SessionStats';
 import { fetchLeaderboard } from '../store/slices/leaderboardSlice';
 import { mediaSmallTabletMax } from '../styles/constants';
