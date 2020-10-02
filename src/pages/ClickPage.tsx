@@ -22,6 +22,7 @@ export const ClickPage: FC = () => {
   const dispatch = useDispatch();
 
   const { team } = useParams<{ team: string }>();
+
   const {
     pending: recordClickPending,
     error,

@@ -11,13 +11,11 @@ export const PendingButton: FC<ButtonProps> = ({
   isPending,
   children,
   ...rest
-}) => {
-  return (
-    <button disabled={isPending} {...rest}>
-      {isPending ? <ButtonLoader /> : children}
-    </button>
-  );
-};
+}) => (
+  <button disabled={isPending} {...rest}>
+    {isPending ? <ButtonLoader /> : children}
+  </button>
+);
 
 const ButtonLoader = styled(ButtonLoaderSvg)`
   fill: ${({ theme }) => theme.colors.white};

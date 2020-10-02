@@ -22,8 +22,8 @@ const TEAM_NAME_MAX_LENGTH = 50;
 
 export const TeamForm: FC<Props> = ({ setTeam }) => {
   const { t } = useTranslation();
-
   const dispatch = useDispatch();
+
   const {
     pending,
     data: { token },
