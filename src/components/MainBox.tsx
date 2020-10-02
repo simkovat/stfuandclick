@@ -20,7 +20,6 @@ const Wrapper = styled.div`
   width: 60%;
   width: 550px;
   height: 675px;
-  margin-bottom: 35px;
   padding: 10px 0 20px 0;
   display: flex;
   align-items: center;
