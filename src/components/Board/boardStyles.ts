@@ -6,16 +6,6 @@ export const Wrapper = styled.div`
   font-weight: bold;
 `;
 
-export const Headers = styled.div`
-  margin-left: 10%;
-  padding: 5px 20px;
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  color: ${({ theme }) => theme.colors.textLight};
-  font-size: 0.7em;
-  text-transform: uppercase;
-`;
 export const Row = styled.li`
   background-color: ${({ theme }) => theme.colors.tableRowDark};
   padding: 0 10px 0 15px;

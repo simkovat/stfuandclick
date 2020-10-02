@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef } from 'react';
-import { Headers, Name, Rank, Row, TeamData, Wrapper } from './boardStyles';
+import { Name, Rank, Row, TeamData, Wrapper } from './boardStyles';
 
+import { BoardHeaders } from './BoardHeaders';
 import { Error } from '../Error';
 import { Loading } from '../Loading';
 import { NoData } from '../NoData';
@@ -9,11 +10,8 @@ import { RootStateT } from '../../store/rootReducer';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 
 export const ScoreBoard: FC = () => {
-  const { t } = useTranslation();
-
   const { data, pending, error } = useSelector(
     (state: RootStateT) => state.leaderboard
   );
@@ -34,10 +32,7 @@ export const ScoreBoard: FC = () => {
 
   return (
     <Wrapper>
-      <Headers>
-        <span>{t('team')}</span>
-        <span>{t('click_plural')}</span>
-      </Headers>
+      <BoardHeaders />
       <TableWrapper>
         {data?.map((team) => {
           if (team.team === teamName) {
