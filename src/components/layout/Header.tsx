@@ -16,5 +16,8 @@ const Wrapper = styled.div`
   font-weight: bold;
   display: flex;
   justify-content: center;
-  padding: 5px 0;
+  align-items: center;
+  padding: 8px 0;
+  font-family: 'Phosphate';
+  letter-spacing: 1px;
 `;

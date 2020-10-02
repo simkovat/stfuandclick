@@ -1,4 +1,5 @@
 import './translations/i18n';
+import './index.css';
 
 import * as serviceWorker from './serviceWorker';
 
