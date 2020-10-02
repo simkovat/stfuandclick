@@ -1,3 +1,5 @@
+import './translations/i18n';
+
 import * as serviceWorker from './serviceWorker';
 
 import { App } from './App';

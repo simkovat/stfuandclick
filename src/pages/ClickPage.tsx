@@ -15,8 +15,10 @@ import { postClick } from '../store/slices/recordClickSlice';
 import { recordClickSelector } from '../store/selectors/recordClickSelector';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const ClickPage: FC = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const { team } = useParams<{ team: string }>();
@@ -39,10 +41,10 @@ export const ClickPage: FC = () => {
   return (
     <Layout>
       <Caption>
-        Clicking for team <span>{team}</span>
+        {t('clickingForTeam')} <span>{team}</span>
       </Caption>
       <Invitation>
-        Too lazy to click? Let your pals click for you:
+        {t('tooLazyToClick')}
         <LinkBox>{teamLink}</LinkBox>
         <CopyToClipboardButton stringToCopy={teamLink} />
       </Invitation>

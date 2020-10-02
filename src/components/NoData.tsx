@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
 
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 export const NoData: FC = () => {
-  return <Wrapper>No data to display.</Wrapper>;
+  const { t } = useTranslation();
+  return <Wrapper>{t('noData')}</Wrapper>;
 };
 
 const Wrapper = styled.div`

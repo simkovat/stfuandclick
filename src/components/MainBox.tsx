@@ -2,12 +2,14 @@ import { FC } from 'react';
 import React from 'react';
 import { mediaSmallTabletMax } from '../styles/constants';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 export const MainBox: FC = ({ children }) => {
+  const { t } = useTranslation();
   return (
     <Wrapper>
       {children}
-      <Footer>Want to be top? STFU and click!</Footer>
+      <Footer>{t('wantToBeTop')}</Footer>
     </Wrapper>
   );
 };

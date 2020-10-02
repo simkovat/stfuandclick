@@ -1,17 +1,18 @@
 import React, { FC } from 'react';
 
+import { Trans } from 'react-i18next';
 import styled from 'styled-components';
 
-export const Footer: FC = () => {
-  return (
-    <Wrapper>
-      <span>
+export const Footer: FC = () => (
+  <Wrapper>
+    <span>
+      <Trans i18nKey='footerText'>
         If you don't like this page, it's
         <a href='https://www.applifting.cz/'> Applifting</a>'s fault.
-      </span>
-    </Wrapper>
-  );
-};
+      </Trans>
+    </span>
+  </Wrapper>
+);
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const Wrapper = styled.div`
   font-style: italic;
   background-color: ${({ theme }) => theme.colors.background};
   padding: 20px 10px;
-  & span > a {
+  & a {
     color: ${({ theme }) => theme.colors.primary};
   }
 `;

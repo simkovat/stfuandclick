@@ -12,8 +12,10 @@ import { RibbonHeader } from '../components/RibbonHeader';
 import { TeamForm } from '../components/form/TeamForm';
 import { fetchLeaderboard } from '../store/slices/leaderboardSlice';
 import { recordClickSelector } from '../store/selectors/recordClickSelector';
+import { useTranslation } from 'react-i18next';
 
 export const HomePage: FC = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const { success: teamSubmissionSuccess, error } = useSelector(
@@ -25,21 +27,17 @@ export const HomePage: FC = () => {
     dispatch(fetchLeaderboard());
   }, [dispatch]);
 
-  //TODO is this the right approach?
   if (teamSubmissionSuccess) {
     return <Redirect to={`/${team}`} />;
   }
 
   return (
     <Layout>
-      <Quote
-        text={"It's really simple, you just need to click as fast as you can."}
-        author={'anonymous'}
-      />
+      <Quote text={t('quote')} author={t('quoteAuthor')} />
       {error && <Error />}
       <MainBox>
         <TeamForm setTeam={setTeam} />
-        <RibbonHeader title={'TOP 10 Clickers'} />
+        <RibbonHeader title={t('top10Clickers')} />
         <LeaderBoard />
       </MainBox>
     </Layout>

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from "react-i18next";
 
 export const StatsItem: FC<{ title: string; count: number }> = ({
   title,
@@ -17,10 +18,11 @@ interface Props {
   teamClicks: number;
 }
 export const SessionStats: FC<Props> = ({ yourClicks, teamClicks }) => {
+  const { t } = useTranslation();
   return (
     <Wrapper>
-      <StatsItem title={'Your clicks:'} count={yourClicks} />
-      <StatsItem title={'Team clicks:'} count={teamClicks} />
+      <StatsItem title={t('yourClicks')} count={yourClicks} />
+      <StatsItem title={t('teamClicks')} count={teamClicks} />
     </Wrapper>
   );
 };

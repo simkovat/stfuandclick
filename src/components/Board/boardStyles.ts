@@ -14,6 +14,7 @@ export const Headers = styled.div`
   justify-content: space-between;
   color: ${({ theme }) => theme.colors.textLight};
   font-size: 0.7em;
+  text-transform: uppercase;
 `;
 export const Row = styled.li`
   background-color: ${({ theme }) => theme.colors.tableRowDark};

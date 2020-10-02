@@ -2,15 +2,17 @@ import { FC } from 'react';
 import { PendingButton } from './PendingButton';
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   onClick: () => void;
   isPending: boolean;
 }
 export const BigClickButton: FC<Props> = ({ onClick, isPending }) => {
+  const { t } = useTranslation();
   return (
     <Button type='submit' onClick={onClick} isPending={isPending}>
-      CLICK!
+      {t('click')}!
     </Button>
   );
 };
@@ -27,4 +29,5 @@ const Button = styled(PendingButton)`
   justify-content: center;
   align-items: center;
   height: 100px;
+  text-transform: uppercase;
 `;

@@ -8,6 +8,7 @@ import { postClick } from '../../store/slices/recordClickSlice';
 import { recordClickSelector } from '../../store/selectors/recordClickSelector';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 interface FormData {
   teamName: string;
@@ -17,7 +18,11 @@ interface Props {
   setTeam: (team: string) => void;
 }
 
+const TEAM_NAME_MAX_LENGTH = 50;
+
 export const TeamForm: FC<Props> = ({ setTeam }) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const {
     pending,
@@ -34,16 +39,16 @@ export const TeamForm: FC<Props> = ({ setTeam }) => {
   return (
     <Wrapper onSubmit={handleSubmit(onSubmit)}>
       <InputWrapper>
-        <Label>Enter your team name:</Label>
+        <Label>{t('enterTeamName')}</Label>
         <Input
           type='text'
-          placeholder='Your mom'
+          placeholder={t('yourMom')}
           name='teamName'
           ref={register({
-            required: { value: true, message: 'Please enter your team name.' },
+            required: { value: true, message: t('errorEnterTeamName') },
             maxLength: {
-              value: 50,
-              message: 'Team name too long, try something shorter.',
+              value: TEAM_NAME_MAX_LENGTH,
+              message: t('errorShorterTeamName'),
             },
           })}
         />
@@ -52,7 +57,7 @@ export const TeamForm: FC<Props> = ({ setTeam }) => {
         )}
       </InputWrapper>
       <Button type='submit' isPending={pending}>
-        CLICK!
+        {t('click')}!
       </Button>
     </Wrapper>
   );
@@ -96,4 +101,5 @@ const Button = styled(PendingButton)`
   font-weight: bold;
   font-size: 1.5em;
   height: 55px;
+  text-transform: uppercase;
 `;

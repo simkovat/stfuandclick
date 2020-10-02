@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
 
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 export const Error: FC = () => {
-  return <Wrapper>Sorry, something went wrong.</Wrapper>;
+  const { t } = useTranslation();
+  return <Wrapper>{t('errorGeneral')}</Wrapper>;
 };
 
 const Wrapper = styled.div`

@@ -8,8 +8,10 @@ import React from 'react';
 import { RootStateT } from '../../store/rootReducer';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export const LeaderBoard: FC = () => {
+  const { t } = useTranslation();
   const { data, pending, error } = useSelector(
     (state: RootStateT) => state.leaderboard
   );
@@ -21,8 +23,8 @@ export const LeaderBoard: FC = () => {
   return (
     <Wrapper>
       <Headers>
-        <span>TEAM</span>
-        <span>CLICKS</span>
+        <span>{t('team')}</span>
+        <span>{t('click_plural')}</span>
       </Headers>
       <TableWrapper>
         {data?.slice(0, 10).map((team) => (

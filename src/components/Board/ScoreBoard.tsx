@@ -9,8 +9,11 @@ import { RootStateT } from '../../store/rootReducer';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export const ScoreBoard: FC = () => {
+  const { t } = useTranslation();
+
   const { data, pending, error } = useSelector(
     (state: RootStateT) => state.leaderboard
   );
@@ -32,8 +35,8 @@ export const ScoreBoard: FC = () => {
   return (
     <Wrapper>
       <Headers>
-        <span>TEAM</span>
-        <span>CLICKS</span>
+        <span>{t('team')}</span>
+        <span>{t('click_plural')}</span>
       </Headers>
       <TableWrapper>
         {data?.map((team) => {
