@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Error } from '../components/Error';
 import { Layout } from '../components/layout/Layout';
-import { LeaderBoard } from '../components/boardComponents/LeaderBoard';
+import { LeaderBoard } from '../components/board/LeaderBoard';
 import { MainBox } from '../components/MainBox';
 import { Quote } from '../components/Quote';
 import React from 'react';
