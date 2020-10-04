@@ -1,67 +1,40 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { FC, useState } from 'react';
 
-import { ErrorMessage } from './FormErrorMessage';
-import { FC } from 'react';
-import { PendingButton } from '../buttons/PendingButton';
+import { Link } from 'react-router-dom';
 import React from 'react';
-import { postClick } from '../../store/slices/recordClickSlice';
-import { recordClickSelector } from '../../store/selectors/recordClickSelector';
+import { routes } from '../../router/routes';
 import styled from 'styled-components';
-import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-interface FormData {
-  teamName: string;
-}
-
-interface Props {
-  setTeam: (team: string) => void;
-}
-
-const TEAM_NAME_MAX_LENGTH = 50;
-
-export const TeamForm: FC<Props> = ({ setTeam }) => {
+export const TeamForm: FC = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
 
-  const {
-    pending,
-    data: { token },
-  } = useSelector(recordClickSelector);
-
-  const { register, handleSubmit, errors } = useForm<FormData>();
-
-  const onSubmit = (data: FormData) => {
-    dispatch(postClick(data.teamName, token));
-    setTeam(data.teamName);
-  };
+  const [team, setTeam] = useState<string>();
 
   return (
-    <Wrapper onSubmit={handleSubmit(onSubmit)}>
+    <Wrapper>
       <InputWrapper>
         <Label>{t('enterTeamName')}</Label>
         <Input
           type='text'
           placeholder={t('yourMom')}
           name='teamName'
-          ref={register({
-            required: { value: true, message: t('errorEnterTeamName') },
-            maxLength: {
-              value: TEAM_NAME_MAX_LENGTH,
-              message: t('errorShorterTeamName'),
-            },
-          })}
+          onChange={(e) => setTeam(e.target.value)}
+          value={team}
         />
-        {errors.teamName && (
-          <ErrorMessage message={errors.teamName.message as string} />
-        )}
       </InputWrapper>
-      <Button type='submit' isPending={pending}>
-        {t('click')}!
-      </Button>
+      <StyledLink to={`${routes.CLICK_PAGE}/${team}`} disabled={!team}>
+        <Button>{t('click')}!</Button>
+      </StyledLink>
     </Wrapper>
   );
 };
+
+const StyledLink = styled(Link)<{ disabled: boolean }>`
+  width: 40%;
+  pointer-events: ${(props) => props.disabled && 'none'};
+  opacity: ${(props) => props.disabled && '0.7'};
+`;
 
 const Wrapper = styled.form`
   width: 100%;
@@ -93,8 +66,8 @@ const Input = styled.input`
     font-style: italic;
   }
 `;
-const Button = styled(PendingButton)`
-  width: 40%;
+const Button = styled.button`
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 5px;
   color: ${({ theme }) => theme.colors.white};

@@ -1,21 +1,21 @@
 import { FC } from 'react';
 import React from 'react';
 import styled from 'styled-components';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-export const StatsItem: FC<{ title: string; count: number }> = ({
+export const StatsItem: FC<{ title: string; count: number | null }> = ({
   title,
   count,
 }) => (
   <StatsItemWrapper>
     <Title>{title}</Title>
-    <Count>{count.toLocaleString()}</Count>
+    {count && <Count>{count.toLocaleString()}</Count>}
   </StatsItemWrapper>
 );
 
 interface Props {
-  yourClicks: number;
-  teamClicks: number;
+  yourClicks: number | null;
+  teamClicks: number | null;
 }
 export const SessionStats: FC<Props> = ({ yourClicks, teamClicks }) => {
   const { t } = useTranslation();
