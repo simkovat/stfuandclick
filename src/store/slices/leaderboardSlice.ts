@@ -47,12 +47,11 @@ export const {
 
 export const fetchLeaderboard = (): AppThunk => async (dispatch) => {
   dispatch(getLeaderBoardPending());
-  let leaderboard;
   try {
-    leaderboard = await getLeaderboardApi();
+    const leaderboard = await getLeaderboardApi();
+    dispatch(getLeaderBoardSuccess(leaderboard));
   } catch (err) {
     dispatch(getLeaderBoardFailed(err.toString()));
     return;
   }
-  dispatch(getLeaderBoardSuccess(leaderboard));
 };

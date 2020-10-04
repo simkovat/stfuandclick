@@ -8,7 +8,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: inherit;
     font-size: 100%;
     font-weight: inherit;
-    transition: all 0.15s ease-in-out;
   }
 
   *,

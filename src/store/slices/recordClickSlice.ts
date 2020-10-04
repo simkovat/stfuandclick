@@ -2,37 +2,30 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { SessionDataT, recordClickApi } from '../../api/recordClickApi';
 
 import { AppThunk } from '../store';
-import { getRandomString } from '../../utils/getRandomString';
+import { fetchLeaderboard } from './leaderboardSlice';
 
 export type RecordClickStateT = {
   data: {
-    token: string;
-    yourClicks: number;
-    teamClicks: number;
+    yourClicks: number | null;
+    teamClicks: number | null;
   };
   pending: boolean;
   error: string | null;
-  success: boolean | null;
 };
 
 const initialState: RecordClickStateT = {
   data: {
-    token: getRandomString(),
-    yourClicks: 0,
-    teamClicks: 0,
+    yourClicks: null,
+    teamClicks: null,
   },
   pending: false,
   error: null,
-  success: null,
 };
 
 export const recordClickSlice = createSlice({
   name: 'recordClick',
   initialState,
   reducers: {
-    generateSessionToken(state) {
-      state.data.token = getRandomString();
-    },
     recordClickPending(state) {
       state.pending = true;
     },
@@ -40,18 +33,15 @@ export const recordClickSlice = createSlice({
       state.data.yourClicks = action.payload.data.your_clicks;
       state.data.teamClicks = action.payload.data.team_clicks;
       state.pending = false;
-      state.success = true;
     },
     recordClickFailed(state, action: PayloadAction<string>) {
       state.error = action.payload;
       state.pending = false;
-      state.success = false;
     },
   },
 });
 
 export const {
-  generateSessionToken,
   recordClickFailed,
   recordClickSuccess,
   recordClickPending,
@@ -61,12 +51,12 @@ export const postClick = (team: string, session: string): AppThunk => async (
   dispatch
 ) => {
   dispatch(recordClickPending());
-  let sessionData;
   try {
-    sessionData = await recordClickApi({ team, session });
+    const sessionData = await recordClickApi({ team, session });
+    dispatch(recordClickSuccess(sessionData));
+    dispatch(fetchLeaderboard());
   } catch (err) {
     dispatch(recordClickFailed(err.toString()));
     return;
   }
-  dispatch(recordClickSuccess(sessionData));
 };

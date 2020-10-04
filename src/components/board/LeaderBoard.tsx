@@ -1,39 +1,35 @@
 import { Name, Rank, Row, TeamData, Wrapper } from './boardStyles';
 
 import { BoardHeaders } from './BoardHeaders';
-import { Error } from '../Error';
+import { DataWrapper } from '../layout/DataWrapper';
 import { FC } from 'react';
-import { Loading } from '../Loading';
-import { NoData } from '../NoData';
 import React from 'react';
-import { RootStateT } from '../../store/rootReducer';
+import { leaderboardSelector } from '../../store/selectors/leaderboardSelector';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
 export const LeaderBoard: FC = () => {
-  const { data, pending, error } = useSelector(
-    (state: RootStateT) => state.leaderboard
-  );
-
-  if (pending) return <Loading />;
-  if (error) return <Error />;
-  if (data?.length === 0) return <NoData />;
+  const { data, pending, error } = useSelector(leaderboardSelector);
 
   return (
-    <Wrapper>
-      <BoardHeaders />
-      <TableWrapper>
-        {data?.slice(0, 10).map((team) => (
-          <Row key={team.team}>
-            <Rank>{team.order}</Rank>
-            <TeamData>
-              <Name>{team.team}</Name>
-              <span>{team.clicks}</span>
-            </TeamData>
-          </Row>
-        ))}
-      </TableWrapper>
-    </Wrapper>
+    <DataWrapper pending={pending} error={error} data={data}>
+      <Wrapper>
+        <BoardHeaders />
+        <TableWrapper>
+          {data
+            ? data.slice(0, 10).map((team) => (
+                <Row key={team.team}>
+                  <Rank>{team.order}</Rank>
+                  <TeamData>
+                    <Name>{team.team}</Name>
+                    <span>{team.clicks}</span>
+                  </TeamData>
+                </Row>
+              ))
+            : null}
+        </TableWrapper>
+      </Wrapper>
+    </DataWrapper>
   );
 };
 

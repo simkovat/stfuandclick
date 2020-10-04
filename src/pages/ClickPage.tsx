@@ -4,18 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BigClickButton } from '../components/buttons/BigClickButton';
 import { CopyToClipboardButton } from '../components/buttons/CopyToClipboardButton';
 import { Error } from '../components/Error';
-import { Layout } from '../components/layout/Layout';
 import { MainBox } from '../components/MainBox';
 import React from 'react';
 import { ScoreBoard } from '../components/board/ScoreBoard';
 import { SessionStats } from '../components/SessionStats';
-import { fetchLeaderboard } from '../store/slices/leaderboardSlice';
+import { generateSessionToken } from '../store/slices/userSlice';
+import { getHrefLink } from '../utils/getHrefLink';
 import { mediaSmallTabletMax } from '../styles/constants';
 import { postClick } from '../store/slices/recordClickSlice';
 import { recordClickSelector } from '../store/selectors/recordClickSelector';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { userSelector } from '../store/selectors/userSelector';
 
 export const ClickPage: FC = () => {
   const { t } = useTranslation();
@@ -23,24 +24,34 @@ export const ClickPage: FC = () => {
 
   const { team } = useParams<{ team: string }>();
 
+  const { session } = useSelector(userSelector);
+
   const {
     pending: recordClickPending,
     error,
-    data: { token, yourClicks, teamClicks },
+    data: { yourClicks, teamClicks },
   } = useSelector(recordClickSelector);
 
   useEffect(() => {
-    dispatch(fetchLeaderboard());
+    dispatch(generateSessionToken());
   }, [dispatch]);
 
+  useEffect(() => {
+    session && dispatch(postClick(team, session));
+  }, [dispatch, session, team]);
+
   const handleClick = () => {
-    dispatch(postClick(team, token));
+    session && dispatch(postClick(team, session));
   };
 
-  const teamLink = window.location.href;
+  const teamLink = getHrefLink();
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
-    <Layout>
+    <>
       <Caption>
         {t('clickingForTeam')} <span>{team}</span>
       </Caption>
@@ -49,14 +60,13 @@ export const ClickPage: FC = () => {
         <LinkBox>{teamLink}</LinkBox>
         <CopyToClipboardButton stringToCopy={teamLink} />
       </Invitation>
-      {error && <Error />}
 
       <MainBox>
         <BigClickButton onClick={handleClick} isPending={recordClickPending} />
         <SessionStats yourClicks={yourClicks} teamClicks={teamClicks} />
         <ScoreBoard />
       </MainBox>
-    </Layout>
+    </>
   );
 };
 
