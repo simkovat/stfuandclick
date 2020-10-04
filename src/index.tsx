@@ -13,15 +13,15 @@ import { defaultTheme } from './styles/defaultTheme';
 import { store } from './store/store';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
         <ThemeProvider theme={defaultTheme}>
           <App />
         </ThemeProvider>
-      </React.StrictMode>
-    </BrowserRouter>
-  </Provider>,
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
