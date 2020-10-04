@@ -13,11 +13,7 @@ export async function recordClickApi({
 }): Promise<ClickResultT> {
   const url = `${process.env.REACT_APP_API_URL}/klik`;
 
-  try {
-    const teamResponse = await axios.post<SessionDataT>(url, { team, session });
+  const teamResponse = await axios.post<SessionDataT>(url, { team, session });
 
-    return { data: teamResponse.data };
-  } catch (err) {
-    throw err;
-  }
+  return { data: teamResponse.data };
 }

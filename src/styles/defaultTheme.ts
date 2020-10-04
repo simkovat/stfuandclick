@@ -1,18 +1,4 @@
-export interface ThemeT {
-  colors: Record<
-    | 'background'
-    | 'primary'
-    | 'darkPrimary'
-    | 'tableRowDark'
-    | 'tableRowLight'
-    | 'textLight'
-    | 'error'
-    | 'white',
-    string
-  >;
-}
-
-export const defaultTheme: ThemeT = {
+export const defaultTheme = {
   colors: {
     background: '#f1f2f3',
     primary: '#4890e2',
