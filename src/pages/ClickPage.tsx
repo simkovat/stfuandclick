@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BigClickButton } from '../components/buttons/BigClickButton';
 import { CopyToClipboardButton } from '../components/buttons/CopyToClipboardButton';
 import { Error } from '../components/Error';
-import { Layout } from '../components/layout/Layout';
 import { MainBox } from '../components/MainBox';
 import React from 'react';
 import { ScoreBoard } from '../components/board/ScoreBoard';
@@ -40,7 +39,7 @@ export const ClickPage: FC = () => {
   const teamLink = window.location.href;
 
   return (
-    <Layout>
+    <>
       <Caption>
         {t('clickingForTeam')} <span>{team}</span>
       </Caption>
@@ -56,7 +55,7 @@ export const ClickPage: FC = () => {
         <SessionStats yourClicks={yourClicks} teamClicks={teamClicks} />
         <ScoreBoard />
       </MainBox>
-    </Layout>
+    </>
   );
 };
 

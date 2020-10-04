@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Error } from '../components/Error';
-import { Layout } from '../components/layout/Layout';
 import { LeaderBoard } from '../components/board/LeaderBoard';
 import { MainBox } from '../components/MainBox';
 import { Quote } from '../components/Quote';
@@ -33,7 +32,7 @@ export const HomePage: FC = () => {
   }
 
   return (
-    <Layout>
+    <>
       <Quote text={t('quote')} author={t('quoteAuthor')} />
       {error && <Error />}
       <MainBox>
@@ -41,6 +40,6 @@ export const HomePage: FC = () => {
         <RibbonHeader title={t('top10Clickers')} />
         <LeaderBoard />
       </MainBox>
-    </Layout>
+    </>
   );
 };
